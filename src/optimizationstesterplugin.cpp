@@ -60,33 +60,40 @@ bool OptimizationsTesterPlugin::initialize(const QStringList &arguments, QString
     menu->addAction(cmd);
     Core::ActionManager::actionContainer(Core::Constants::M_TOOLS)->addMenu(menu);
 
+    //**
     // First, connect the QuickView to change state signal
+    //**
     QObject::connect( &mQuickView, &QQuickView::statusChanged, this, &OptimizationsTesterPlugin::onQuickViewStatusChanged);
 
     // Get the QML entry point
     QUrl lMainFile =  QUrl("qrc:///main.qml");
 
-    // Read Data xml
+    //**
+    // Create all object needed for the plugin here
+    //**
     CodeSamplesModel lModel;
     DataXMLReader lXMLReader( &lModel );
     PerformanceManager lPerfoMgr;
 
+    //**
+    // Load example files
+    //**
     QFile lDataFile("examples/examples.xml");
-    if (! lDataFile.open(QFile::ReadOnly | QFile::Text) )
-    {
+    if (! lDataFile.open(QFile::ReadOnly | QFile::Text) ){
         qWarning() << "Cannot find examples.xml file in " << QDir::currentPath();
         return false;
     }
-
-    qDebug() << "Start to read XML file";
     lXMLReader.read( &lDataFile );
-    qDebug() << "End to read XML file";
 
-    //Give QML access to the C++ model read by the XML Parser
+    //**
+    //Give QML access to the C++ model and utility classes
+    //**
     mQuickView.rootContext()->setContextProperty("DataModel", &lModel);
     mQuickView.rootContext()->setContextProperty("PerformanceMgr", &lPerfoMgr);
 
-    // If the file exists, set the source
+    //**
+    // Set the QML main source file
+    //**
     mQuickView.setSource(lMainFile);
     mQuickView.setResizeMode(QQuickView::SizeRootObjectToView);
     mQuickView.setTitle("Optimizations Tester");

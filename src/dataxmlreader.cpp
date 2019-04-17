@@ -160,16 +160,16 @@ void DataXMLReader::readExampleAfter(CodeSamplesModel::CodeSample & codeSample)
 
 QString DataXMLReader::loadFileContent(const QString & fileName){
 
-    // Open the file
+    // Verify that the file exists and can be opened
     QFile lFile(QString("%1/%2").arg("examples").arg(fileName));
     if (!lFile.open(QFile::ReadOnly | QFile::Text)){
         qWarning() << "File mentionned in examples.xml cannot be opened : " << fileName;
         return QString("");
     }
 
-    // Create the text stream
+    // Create the text stream to read the hpp file
     QTextStream lInStream(&lFile);
 
-    // Return the text content as string
+    // Return the text content which contains all the hpp source code as string
     return lInStream.readAll();
 }

@@ -3,46 +3,53 @@
 
 #include <QObject>
 
-/*
- * This class will store the Data model read by the XML parser
- * It will store the code examples, and skeletons to help users in optimizations
-*/
+/**
+ * @brief The CodeSamplesModel class will store the Data model read by the XML parser
+ */
 class CodeSamplesModel : public QObject
 {
     Q_OBJECT
 
     Q_PROPERTY(QString skeletonBefore READ getSkeletonBefore WRITE setSkeletonBefore NOTIFY skeletonBeforeChanged )
-    Q_PROPERTY(QString skeletonAfter READ getSkeletonAfter WRITE setSkeletonAfter NOTIFY skeletonAfterChanged )
-
-    //Q_PROPERTY(QStringList examplesNames )
+    Q_PROPERTY(QString skeletonAfter READ getSkeletonAfter WRITE setSkeletonAfter NOTIFY skeletonAfterChanged )    
 
 public:
+
     CodeSamplesModel( QObject * parent = nullptr );
 
-    // Store each hpp file in a QString way to display it in code editors
+    /**
+     * @brief The CodeSample struct represent an optimization example ( 1 title and 2 .hpp files )
+     */
     struct CodeSample{
         QString title;
         QString codeBefore;
         QString codeAfter;
     };
 
-    /*
-     * Skeleton code for live coding
-    */
+    /**
+     * @brief setSkeletonBefore Load the skeleton template (left) in live coding tab to help user coding its optimizations tests
+     * @param code
+     */
     inline void setSkeletonBefore(const QString& code){
         mSkeletonBefore = code;
         emit skeletonBeforeChanged();
     }
+    inline QString getSkeletonBefore() const{ return mSkeletonBefore; }
+
+    /**
+     * @brief setSkeletonAfter Load the skeleton template (right) in live coding tab to help user coding its optimizations tests
+     * @param code
+     */
     inline void setSkeletonAfter(const QString& code){
         mSkeletonAfter = code;
         emit skeletonAfterChanged();
     }
-    inline QString getSkeletonBefore() const{ return mSkeletonBefore; }
     inline QString getSkeletonAfter() const{ return mSkeletonAfter; }
 
-    /*
-     * Code Examples
-    */
+    /**
+     * @brief addExample From the XML loader, add new examples in the model to be displayed in the Optimizations Examples tab
+     * @param codeSample
+     */
     void addExample(const CodeSample& codeSample);
     inline QVector<CodeSample> getExamples() const{ return mCodeExamples; }
 
@@ -52,14 +59,12 @@ Q_SIGNALS:
     void skeletonAfterChanged();
 
 private:
-    /*
-     * Code Skeletons for live coding HMI
-     */
+
     QString mSkeletonBefore;
     QString mSkeletonAfter;
 
-    /*
-     * Many Examples
+    /**
+     * @brief List of all code examples
      */
     QVector<CodeSample> mCodeExamples;
 
