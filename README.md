@@ -1,8 +1,8 @@
 # OptimizationsTester
 
-Qt Creator Plugin to live test code optimizations and learn from many examples.
+This is a Qt Creator Plugin. It will be used to quickly test some code optimizations and learn from many optimizations examples.
 This plugin will be designed for new developers in order to help them optimize their source code.
-First tab will allow the users to live test source code (before/after optimization) and show results (time elapsed, %..)
+First tab will allow the users to live test source code (before/after optimization) and will show basics results (time elapsed, %..)
 Second tab will show various source code optimizations usually found online among most common cases
 
 **Not working yet ! In progress Job...**
