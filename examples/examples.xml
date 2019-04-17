@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<optimizationsTester>
+    <liveCoding>
+            <skeleton>
+                <before>Skeleton1_before.hpp</before>
+                <after>Skeleton1_after.hpp</after>
+            </skeleton>
+    </liveCoding>
+    <optimizationExamples>
+        <example>
+            <before>Example1_before.hpp</before>
+            <after>Example1_after.hpp</after>
+        </example>
+        <example>
+            <before>Example2_before.hpp</before>
+            <after>Example2_after.hpp</after>
+        </example>
+    </optimizationExamples>
+</optimizationsTester>
+
+
+
+
+
+

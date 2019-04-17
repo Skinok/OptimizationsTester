@@ -1,0 +1,11 @@
+{
+    \"Name\" : \"OptimizationsTester\",
+    \"Version\" : \"0.0.1\",
+    \"CompatVersion\" : \"0.0.1\",
+    \"Vendor\" : \"Skinok\",
+    \"Copyright\" : \"(C) Skinok\",
+    \"License\" : \"LGPL v3\",
+    \"Description\" : \"Tester of C++/Qt Opitmizations\",
+    \"Url\" : \"\",
+    $$dependencyList
+}
