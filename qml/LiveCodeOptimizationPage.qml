@@ -189,7 +189,7 @@ Item{
 
             onClicked: {
                 console.log("Go Compare!")
-                PerformanceMgr.compare( leftEditor.text, rightEditor.text );
+                PerformanceMgr.compareLiveCoding( leftEditor.text, rightEditor.text );
             }
         }
 

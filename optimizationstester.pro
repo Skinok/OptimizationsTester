@@ -17,7 +17,10 @@ HEADERS += \
     src/optimizationstesterconstants.h \
     src/dataxmlreader.h \
     src/codesamplesmodel.h \
-    src/performancemanager.h
+    src/performancemanager.h \
+    ../../../../../../Temp/QtCreator.WTQgpj \
+    ../../../../../../Temp/QtCreator.PleTRe
+
 
 RESOURCES += qml/optimizationstester.qrc
 
@@ -39,7 +42,7 @@ isEmpty(IDE_SOURCE_TREE): IDE_SOURCE_TREE = "C:/Users/Public/CUBE/qt-creator-ope
 ## Either set the IDE_BUILD_TREE when running qmake,
 ## or set the QTC_BUILD environment variable, to override the default setting
 isEmpty(IDE_BUILD_TREE): IDE_BUILD_TREE = $$(QTC_BUILD)
-isEmpty(IDE_BUILD_TREE): IDE_BUILD_TREE = "C:/Users/Public/CUBE/build-qtcreator-Qt_5_12_2_MSVC_2017_32-Release"
+
 
 ## uncomment to build plugin into user config directory
 ## <localappdata>/plugins/<ideversion>
@@ -53,7 +56,19 @@ isEmpty(IDE_BUILD_TREE): IDE_BUILD_TREE = "C:/Users/Public/CUBE/build-qtcreator-
 ###### <dirname>_dependencies.pri, where <dirname> is the name of the directory containing the
 ###### plugin's sources.
 
+CONFIG(debug, debug|release) {
+    isEmpty(IDE_BUILD_TREE): IDE_BUILD_TREE = "C:/Users/Public/CUBE/build-qtcreator-Qt_5_12_2_MSVC_2017_32-Debug"
+    LIBS += $$IDE_BUILD_TREE/lib/qtcreator/plugins/Cored4.lib
+    LIBS += $$IDE_BUILD_TREE/lib/qtcreator/plugins/QmakeProjectManagerd4.lib
+    LIBS += $$IDE_BUILD_TREE/lib/qtcreator/plugins/ProjectExplorerd4.lib
+}else {
+    isEmpty(IDE_BUILD_TREE): IDE_BUILD_TREE = "C:/Users/Public/CUBE/build-qtcreator-Qt_5_12_2_MSVC_2017_32-Release"
+    LIBS += $$IDE_BUILD_TREE/lib/qtcreator/plugins/QmakeProjectManager4.lib
+    LIBS += $$IDE_BUILD_TREE/lib/qtcreator/plugins/ProjectExplorer4.lib
+}
+
 QTC_PLUGIN_NAME = OptimizationsTester
+
 QTC_LIB_DEPENDS += \
     # nothing here at this time
 
@@ -62,8 +77,6 @@ QTC_PLUGIN_DEPENDS += \
 
 QTC_PLUGIN_RECOMMENDS += \
     # optional plugin dependencies. nothing here at this time
-
-
 
 # Default rules for deployment.
 

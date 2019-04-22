@@ -1,6 +1,9 @@
 #pragma once
 
 #include "optimizationstester_global.h"
+#include "codesamplesmodel.h"
+#include "dataxmlreader.h"
+#include "performancemanager.h"
 
 #include <extensionsystem/iplugin.h>
 
@@ -30,6 +33,13 @@ private:
 
     // Main QQuickView : HMI entry points
     QQuickView mQuickView;
+
+    //**
+    // Create all object needed for the plugin here
+    //**
+    CodeSamplesModel mModel;
+    DataXMLReader * mXMLReader = nullptr;
+    PerformanceManager mPerfoMgr;
 };
 
 } // namespace Internal

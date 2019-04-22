@@ -68,12 +68,9 @@ bool OptimizationsTesterPlugin::initialize(const QStringList &arguments, QString
     // Get the QML entry point
     QUrl lMainFile =  QUrl("qrc:///main.qml");
 
-    //**
-    // Create all object needed for the plugin here
-    //**
-    CodeSamplesModel lModel;
-    DataXMLReader lXMLReader( &lModel );
-    PerformanceManager lPerfoMgr;
+
+
+    mXMLReader = new DataXMLReader( &mModel );
 
     //**
     // Load example files
@@ -83,13 +80,13 @@ bool OptimizationsTesterPlugin::initialize(const QStringList &arguments, QString
         qWarning() << "Cannot find examples.xml file in " << QDir::currentPath();
         return false;
     }
-    lXMLReader.read( &lDataFile );
+    mXMLReader->read( &lDataFile );
 
     //**
     //Give QML access to the C++ model and utility classes
     //**
-    mQuickView.rootContext()->setContextProperty("DataModel", &lModel);
-    mQuickView.rootContext()->setContextProperty("PerformanceMgr", &lPerfoMgr);
+    mQuickView.rootContext()->setContextProperty("DataModel", &mModel);
+    mQuickView.rootContext()->setContextProperty("PerformanceMgr", &mPerfoMgr);
 
     //**
     // Set the QML main source file

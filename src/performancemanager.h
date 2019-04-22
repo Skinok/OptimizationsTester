@@ -43,7 +43,7 @@ public:
     }
 
 public slots:
-    void compareliveCoding(const QString & before, const QString & after);
+    void compareLiveCoding(const QString & before, const QString & after);
 
 Q_SIGNALS:
     void leftPerfoPercentageChanged();

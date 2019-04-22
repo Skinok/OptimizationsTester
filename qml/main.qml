@@ -26,10 +26,6 @@ Item {
         TabButton {
                       text: "Optimization examples"
                   }
-
-        /*TabButton {
-                      text: "Learn advanced C++"
-                  }*/
     }
 
     StackLayout {
@@ -57,14 +53,6 @@ Item {
 
             color: "grey"
         }
-
-        // Page 3
-       /* Rectangle{
-            id: test3
-
-            color: "grey"
-        }*/
-
     }
 }
 
