@@ -3,7 +3,6 @@
 #include "optimizationstester_global.h"
 #include "codesamplesmodel.h"
 #include "dataxmlreader.h"
-#include "performancemanager.h"
 
 #include <extensionsystem/iplugin.h>
 
@@ -15,7 +14,7 @@ namespace Internal {
 class OptimizationsTesterPlugin : public ExtensionSystem::IPlugin
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA(IID "org.qt-project.Qt.QtCreatorPlugin" FILE "OptimizationsTester.json")
+    Q_PLUGIN_METADATA(IID "org.qt-project.Qt.QtCreatorPlugin" FILE "OptimizationsTesterPlugin.json")
 
 public:
     OptimizationsTesterPlugin();
@@ -24,6 +23,8 @@ public:
     bool initialize(const QStringList &arguments, QString *errorString);
     void extensionsInitialized();
     ShutdownFlag aboutToShutdown();
+
+    void initializeOptimRunner();
 
 public Q_SLOTS:
     void onQuickViewStatusChanged(QQuickView::Status status);
@@ -39,7 +40,6 @@ private:
     //**
     CodeSamplesModel mModel;
     DataXMLReader * mXMLReader = nullptr;
-    PerformanceManager mPerfoMgr;
 };
 
 } // namespace Internal

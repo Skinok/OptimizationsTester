@@ -42,9 +42,6 @@ public:
         mRightPerfoPercentage = rightPerfoPercentage;
     }
 
-public slots:
-    void compareLiveCoding(const QString & before, const QString & after);
-
 Q_SIGNALS:
     void leftPerfoPercentageChanged();
     void leftTimeElapsedChanged();

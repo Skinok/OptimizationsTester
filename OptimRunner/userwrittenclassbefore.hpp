@@ -1,16 +1,14 @@
-#ifndef USERWRITEDCLASSAFTER_H
-#define USERWRITEDCLASSAFTER_H
+#ifndef USERWRITEDCLASSBEFORE_H
+#define USERWRITEDCLASSBEFORE_H
 
 // Your includes here
 
 
-class UserWritedClassAfter{
+class UserWrittenClassBefore{
 
 public:
 
-    UserWritedClassAfter(){
-
-    }
+    UserWrittenClassBefore(){}
 
     void checkPerformance(){
 

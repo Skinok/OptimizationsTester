@@ -8,8 +8,8 @@
 #include <QSharedMemory>
 #include <QThread>
 
-#include "UserWritedClassBefore.hpp"
-#include "UserWritedClassAfter.hpp"
+#include "UserWrittenClassBefore.hpp"
+#include "UserWrittenClassAfter.hpp"
 
 class PerformanceCounter : public QObject
 {
@@ -53,8 +53,8 @@ private:
 
     QElapsedTimer mTimer;
 
-    UserWritedClassBefore mCodeBefore;
-    UserWritedClassAfter mCodeAfter;
+    UserWrittenClassBefore mCodeBefore;
+    UserWrittenClassAfter mCodeAfter;
 
     UserCodeNumber mCodeNumber;
 };

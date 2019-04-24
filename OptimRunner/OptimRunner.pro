@@ -1,5 +1,6 @@
 QT -= gui
 QT += core
+QT += qml quick
 
 CONFIG += c++11 console
 CONFIG -= app_bundle
@@ -15,11 +16,6 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
-SOURCES += \
-        main.cpp \
-    threadlauncher.cpp \
-
-
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
@@ -27,6 +23,12 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
     threadlauncher.h \
-    userwritedclassbefore.hpp \
-    userwritedclassafter.hpp \
+    userwrittenclassbefore.hpp \
+    userwrittenclassafter.hpp \
     performancecounter.hpp \
+    performancemanager.h \
+
+SOURCES += \
+    main.cpp \
+    threadlauncher.cpp \
+    performancemanager.cpp \
