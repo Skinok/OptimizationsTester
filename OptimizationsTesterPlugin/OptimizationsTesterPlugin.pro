@@ -8,6 +8,7 @@ DEFINES += OPTIMIZATIONSTESTER_LIBRARY
 SOURCES += src/optimizationstesterplugin.cpp \
     src/dataxmlreader.cpp \
     src/codesamplesmodel.cpp \
+    src/optimizationstestertheme.cpp
 
 
 HEADERS += \
@@ -16,6 +17,7 @@ HEADERS += \
     src/optimizationstesterconstants.h \
     src/dataxmlreader.h \
     src/codesamplesmodel.h \
+    src/optimizationstestertheme.h
 
 
 RESOURCES += qml/optimizationstester.qrc

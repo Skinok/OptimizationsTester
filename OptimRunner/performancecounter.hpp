@@ -8,8 +8,8 @@
 #include <QSharedMemory>
 #include <QThread>
 
-#include "UserWrittenClassBefore.hpp"
-#include "UserWrittenClassAfter.hpp"
+#include "userwrittenclassbefore.hpp"
+#include "userwrittenclassafter.hpp"
 
 class PerformanceCounter : public QObject
 {

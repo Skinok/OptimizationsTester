@@ -2,8 +2,7 @@ import QtQuick 2.9
 import QtQuick.Window 2.2
 import QtQuick.Controls 2.5
 import QtQuick.Layouts 1.12
-
-
+import QtQuickDesignerTheme 1.0
 
 Item {
     id: window
@@ -20,41 +19,37 @@ Item {
         anchors.topMargin: 0
 
         TabButton {
-                      text: "Live code optimization"
-                  }
+            text: "Live code optimization"
+        }
 
         TabButton {
-                      text: "Optimization examples"
-                  }
+            text: "Optimization examples"
+        }
     }
 
-    StackLayout {
-        id: stackView
-        height: parent.height - tabBar.height
-        anchors.right: parent.right
-        anchors.rightMargin: 0
-        anchors.left: parent.left
-        anchors.top: tabBar.bottom
-        anchors.topMargin: 0
+    Image {
+        id: image
+        x: 209
+        y: 267
+        width: 380
+        height: 327
+        fillMode: Image.PreserveAspectFit
+        source: "../src/images/2019-04-25_13-48-04.png"
+    }
 
-        currentIndex: tabBar.currentIndex
-
-        // Page 1
-        LiveCodeOptimizationPage{
-            id:liveCodePages
-            height: window.height
-            width: window.width
-        }
-
-        // Page 2
-        // OptimizationExamplesPage{ }
-        Rectangle{
-            id: test2
-
-            color: "grey"
-        }
+    Rectangle {
+        id: rectangle
+        x: 248
+        y: 93
+        width: 200
+        height: 200
+        color: Theme.BackgroundColorDark
     }
 }
+
+
+
+
 
 
 

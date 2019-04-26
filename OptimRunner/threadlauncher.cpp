@@ -20,10 +20,7 @@ ThreadLauncher::ThreadLauncher()
     // Old fashion way
     QObject::connect(&watcherAfterOptim, SIGNAL(finished()), this, SLOT(onHandleFinished()));
 
-    // Start the computation.
-
-    // QtConcurrent::run( Object , Func, Parameters..)
-    // Example : QFuture<int> future = QtConcurrent::run( &this->mJob, &MyJob::doSomething, QStirng("firstParam") );
+    // Start the computation in different threads thanks to QtConcurrent::run
     const QFuture<qint64> & beforeOptimFuture = QtConcurrent::run( beforePerformanceCounter, &PerformanceCounter::run );
     watcherBeforeOptim.setFuture(beforeOptimFuture);
 
