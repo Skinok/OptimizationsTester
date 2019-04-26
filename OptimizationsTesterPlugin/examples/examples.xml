@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <optimizationsTester>
-    <liveCoding>
-            <skeleton>
-                <before>Skeleton1_before.hpp</before>
-                <after>Skeleton1_after.hpp</after>
-            </skeleton>
-    </liveCoding>
     <optimizationExamples>
         <example>
             <before>Example1_before.hpp</before>
@@ -17,9 +11,3 @@
         </example>
     </optimizationExamples>
 </optimizationsTester>
-
-
-
-
-
-
