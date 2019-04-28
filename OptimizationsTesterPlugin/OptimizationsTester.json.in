@@ -5,7 +5,7 @@
     \"Vendor\" : \"Skinok\",
     \"Copyright\" : \"(C) Skinok\",
     \"License\" : \"LGPL v3\",
-    \"Description\" : \"Tester of C++/Qt Opitmizations\",
-    \"Url\" : \"\",
+    \"Description\" : \"Give users the taste for code optimizations\",
+    \"Url\" : \"https://github.com/Skinok/OptimizationsTester\",
     $$dependencyList
 }
