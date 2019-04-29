@@ -1,6 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
-        <file>LiveCodeOptimizationPage.qml</file>
+        <file>livecodeoptimizationpage.qml</file>
     </qresource>
 </RCC>

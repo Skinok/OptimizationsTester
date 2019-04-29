@@ -110,10 +110,9 @@ bool OptimizationsTesterExtensionPlugin::initialize(const QStringList &arguments
     mQuickView.setResizeMode(QQuickView::SizeRootObjectToView);
     mQuickView.setTitle("Optimizations Tester");
 
-    mQuickView.show(); // debug purpose only
+    mQuickView.show(); // debug purpose only, it should move to Action triggered after finishing to code it
 
     return true;
-
 }
 
 void OptimizationsTesterExtensionPlugin::extensionsInitialized()
