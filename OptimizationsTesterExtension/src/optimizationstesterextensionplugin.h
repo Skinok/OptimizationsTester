@@ -1,6 +1,6 @@
 #pragma once
 
-#include "optimizationstester_global.h"
+#include "optimizationstesterextension_global.h"
 #include "codesamplesmodel.h"
 #include "dataxmlreader.h"
 
@@ -8,17 +8,17 @@
 
 #include <QQuickView>
 
-namespace OptimizationsTester {
+namespace OptimizationsTesterExtension {
 namespace Internal {
 
-class OptimizationsTesterPlugin : public ExtensionSystem::IPlugin
+class OptimizationsTesterExtensionPlugin : public ExtensionSystem::IPlugin
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA(IID "org.qt-project.Qt.QtCreatorPlugin" FILE "OptimizationsTester.json")
+    Q_PLUGIN_METADATA(IID "org.qt-project.Qt.QtCreatorPlugin" FILE "OptimizationsTesterExtension.json")
 
 public:
-    OptimizationsTesterPlugin();
-    ~OptimizationsTesterPlugin();
+    OptimizationsTesterExtensionPlugin();
+    ~OptimizationsTesterExtensionPlugin();
 
     bool initialize(const QStringList &arguments, QString *errorString);
     void extensionsInitialized();
@@ -43,4 +43,4 @@ private:
 };
 
 } // namespace Internal
-} // namespace OptimizationsTester
+} // namespace OptimizationsTesterExtension

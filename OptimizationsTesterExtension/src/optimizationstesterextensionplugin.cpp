@@ -1,7 +1,5 @@
-#include "optimizationstesterplugin.h"
-#include "optimizationstesterconstants.h"
-#include "codesamplesmodel.h"
-#include "dataxmlreader.h"
+#include "optimizationstesterextensionplugin.h"
+#include "optimizationstesterextensionconstants.h"
 
 #include <coreplugin/icore.h>
 #include <coreplugin/icontext.h>
@@ -26,21 +24,22 @@
 #include <QQmlEngine>
 #include <QQmlContext>
 
-namespace OptimizationsTester {
+
+namespace OptimizationsTesterExtension {
 namespace Internal {
 
-OptimizationsTesterPlugin::OptimizationsTesterPlugin()
+OptimizationsTesterExtensionPlugin::OptimizationsTesterExtensionPlugin()
 {
     // Create your members
 }
 
-OptimizationsTesterPlugin::~OptimizationsTesterPlugin()
+OptimizationsTesterExtensionPlugin::~OptimizationsTesterExtensionPlugin()
 {
     // Unregister objects from the plugin manager's object pool
     // Delete members
 }
 
-bool OptimizationsTesterPlugin::initialize(const QStringList &arguments, QString *errorString)
+bool OptimizationsTesterExtensionPlugin::initialize(const QStringList &arguments, QString *errorString)
 {
     // Register objects in the plugin manager's object pool
     // Load settings
@@ -48,20 +47,20 @@ bool OptimizationsTesterPlugin::initialize(const QStringList &arguments, QString
     // Connect to other plugins' signals
     // In the initialize function, a plugin can be sure that the plugins it
     // depends on have initialized their members.
+
     Q_UNUSED(arguments)
     Q_UNUSED(errorString)
 
-    auto action = new QAction(tr("OptimizationsTester Action"), this);
+    auto action = new QAction(tr("OptimizationsTesterExtension Action"), this);
     Core::Command *cmd = Core::ActionManager::registerAction(action, Constants::ACTION_ID,
                                                              Core::Context(Core::Constants::C_GLOBAL));
     cmd->setDefaultKeySequence(QKeySequence(tr("Ctrl+Alt+Meta+A")));
-    connect(action, &QAction::triggered, this, &OptimizationsTesterPlugin::triggerAction);
+    connect(action, &QAction::triggered, this, &OptimizationsTesterExtensionPlugin::triggerAction);
 
     Core::ActionContainer *menu = Core::ActionManager::createMenu(Constants::MENU_ID);
-    menu->menu()->setTitle(tr("Optimitazions Tester"));
+    menu->menu()->setTitle(tr("OptimizationsTesterExtension"));
     menu->addAction(cmd);
     Core::ActionManager::actionContainer(Core::Constants::M_TOOLS)->addMenu(menu);
-
 
     //***
     // Skinok Plugin
@@ -71,7 +70,7 @@ bool OptimizationsTesterPlugin::initialize(const QStringList &arguments, QString
     //**
     // First, connect the QuickView to change state signal
     //**
-    QObject::connect( &mQuickView, &QQuickView::statusChanged, this, &OptimizationsTesterPlugin::onQuickViewStatusChanged);
+    QObject::connect( &mQuickView, &QQuickView::statusChanged, this, &OptimizationsTesterExtensionPlugin::onQuickViewStatusChanged);
 
     // Get the QML entry point
     QUrl lMainFile =  QUrl("qrc:///main.qml");
@@ -114,16 +113,17 @@ bool OptimizationsTesterPlugin::initialize(const QStringList &arguments, QString
     mQuickView.show(); // debug purpose only
 
     return true;
+
 }
 
-void OptimizationsTesterPlugin::extensionsInitialized()
+void OptimizationsTesterExtensionPlugin::extensionsInitialized()
 {
     // Retrieve objects from the plugin manager's object pool
     // In the extensionsInitialized function, a plugin can be sure that all
     // plugins that depend on it are completely initialized.
 }
 
-ExtensionSystem::IPlugin::ShutdownFlag OptimizationsTesterPlugin::aboutToShutdown()
+ExtensionSystem::IPlugin::ShutdownFlag OptimizationsTesterExtensionPlugin::aboutToShutdown()
 {
     // Save settings
     // Disconnect from signals that are not needed during shutdown
@@ -131,13 +131,13 @@ ExtensionSystem::IPlugin::ShutdownFlag OptimizationsTesterPlugin::aboutToShutdow
     return SynchronousShutdown;
 }
 
-void OptimizationsTesterPlugin::triggerAction()
+void OptimizationsTesterExtensionPlugin::triggerAction()
 {
-    // Show the view only when user click on the plugin action
-    // Initialiaze our QML view and check if the file exists otherwise return false.
-    // It will prevent the user that there is an issue when loading this plugin
-    mQuickView.show();
+    QMessageBox::information(Core::ICore::mainWindow(),
+                             tr("Action Triggered"),
+                             tr("This is an action from OptimizationsTesterExtension."));
 }
+
 
 /*
  * *
@@ -149,7 +149,7 @@ QQuickView::Ready	1	This QQuickView has loaded and created the QML component.
 QQuickView::Loading	2	This QQuickView is loading network data.
 QQuickView::Error	3	One or more errors has occurred. Call errors() to retrieve a list of errors.
 */
-void OptimizationsTesterPlugin::onQuickViewStatusChanged(QQuickView::Status status)
+void OptimizationsTesterExtensionPlugin::onQuickViewStatusChanged(QQuickView::Status status)
 {
     switch(status)
     {
@@ -183,7 +183,7 @@ void OptimizationsTesterPlugin::onQuickViewStatusChanged(QQuickView::Status stat
 }
 
 
-void OptimizationsTesterPlugin::initializeOptimRunner(){
+void OptimizationsTesterExtensionPlugin::initializeOptimRunner(){
 
     // Todo : Add OptimRunner in the user session
 
@@ -191,4 +191,4 @@ void OptimizationsTesterPlugin::initializeOptimRunner(){
 }
 
 } // namespace Internal
-} // namespace OptimizationsTester
+} // namespace OptimizationsTesterExtension
