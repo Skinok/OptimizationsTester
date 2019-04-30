@@ -1,0 +1,2 @@
+module OptimizationTester
+LiveCodeOptimizationPage 1.0 ./Livecodeoptimizationpage.qml

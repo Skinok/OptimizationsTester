@@ -9,6 +9,8 @@ Item {
     width: 1280
     height: 800
 
+    // property API here
+
     TabBar {
         id: tabBar
         width: parent.width
@@ -19,7 +21,7 @@ Item {
         anchors.topMargin: 0
 
         TabButton {
-            text: "Live code optimization"
+            text: "Quick optimization test"
         }
 
         TabButton {
@@ -27,24 +29,10 @@ Item {
         }
     }
 
-    Image {
-        id: image
-        x: 209
-        y: 267
-        width: 380
-        height: 327
-        fillMode: Image.PreserveAspectFit
-        source: "../src/images/2019-04-25_13-48-04.png"
+    TestFrameworkPage{
+        id: testFrameworkPage
     }
 
-    Rectangle {
-        id: rectangle
-        x: 248
-        y: 93
-        width: 200
-        height: 200
-        color: Theme.BackgroundColorDark
-    }
 }
 
 

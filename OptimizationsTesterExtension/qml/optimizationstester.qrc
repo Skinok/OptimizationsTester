@@ -1,6 +1,7 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
-        <file>livecodeoptimizationpage.qml</file>
+        <file>TestFrameworkPage.qml</file>
+        <file>images/OptimRunnerTree.png</file>
     </qresource>
 </RCC>

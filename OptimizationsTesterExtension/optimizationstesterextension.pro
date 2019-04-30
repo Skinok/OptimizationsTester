@@ -32,7 +32,7 @@ isEmpty(IDE_SOURCE_TREE): IDE_SOURCE_TREE = "C:/Users/Public/CUBE/qt-creator-ope
 ## Either set the IDE_BUILD_TREE when running qmake,
 ## or set the QTC_BUILD environment variable, to override the default setting
 isEmpty(IDE_BUILD_TREE): IDE_BUILD_TREE = $$(QTC_BUILD)
-isEmpty(IDE_BUILD_TREE): IDE_BUILD_TREE = "C:/Users/Public/CUBE/build-qtcreator-Qt_5_12_2_MSVC_2017_32-Debug"
+isEmpty(IDE_BUILD_TREE): IDE_BUILD_TREE = "C:/Users/Public/CUBE/build-qtcreator-Qt_5_12_2_MSVC_2017_32-Release"
 
 ## uncomment to build plugin into user config directory
 ## <localappdata>/plugins/<ideversion>
@@ -40,7 +40,7 @@ isEmpty(IDE_BUILD_TREE): IDE_BUILD_TREE = "C:/Users/Public/CUBE/build-qtcreator-
 ##    "%LOCALAPPDATA%\QtProject\qtcreator" on Windows Vista and later
 ##    "$XDG_DATA_HOME/data/QtProject/qtcreator" or "~/.local/share/data/QtProject/qtcreator" on Linux
 ##    "~/Library/Application Support/QtProject/Qt Creator" on OS X
-USE_USER_DESTDIR = yes
+# USE_USER_DESTDIR = yes
 
 ###### If the plugin can be depended upon by other plugins, this code needs to be outsourced to
 ###### <dirname>_dependencies.pri, where <dirname> is the name of the directory containing the

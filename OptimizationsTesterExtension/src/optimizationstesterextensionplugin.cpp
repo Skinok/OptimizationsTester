@@ -66,17 +66,6 @@ bool OptimizationsTesterExtensionPlugin::initialize(const QStringList &arguments
     // Skinok Plugin
     //***
 
-
-    //**
-    // First, connect the QuickView to change state signal
-    //**
-    QObject::connect( &mQuickView, &QQuickView::statusChanged, this, &OptimizationsTesterExtensionPlugin::onQuickViewStatusChanged);
-
-    // Get the QML entry point
-    QUrl lMainFile =  QUrl("qrc:///main.qml");
-
-    mXMLReader = new DataXMLReader( &mModel );
-
     //**
     // Load example files
     //**
@@ -85,6 +74,9 @@ bool OptimizationsTesterExtensionPlugin::initialize(const QStringList &arguments
         qWarning() << "Cannot find examples.xml file in " << QDir::currentPath();
         return false;
     }
+
+    // XML Reader for the examples of the second tab
+    mXMLReader = new DataXMLReader( &mModel );
     mXMLReader->read( &lDataFile );
 
     //**
@@ -101,11 +93,18 @@ bool OptimizationsTesterExtensionPlugin::initialize(const QStringList &arguments
     });
     Q_UNUSED(typeIndex);
 
-    //mQuickView.engine()->addImageProvider(QLatin1String("icons"), new QmlDesignerIconProvider());
-
     //**
     // Set the QML main source file
     //**
+
+    // Get the QML entry point
+    QUrl lMainFile =  QUrl("qrc:///main.qml");
+
+    //**
+    // First, connect the QuickView to change state signal
+    //**
+    QObject::connect( &mQuickView, &QQuickView::statusChanged, this, &OptimizationsTesterExtensionPlugin::onQuickViewStatusChanged);
+
     mQuickView.setSource(lMainFile);
     mQuickView.setResizeMode(QQuickView::SizeRootObjectToView);
     mQuickView.setTitle("Optimizations Tester");
