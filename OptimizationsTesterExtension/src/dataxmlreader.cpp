@@ -1,6 +1,7 @@
 #include "dataxmlreader.h"
 
-#include <QtWidgets>
+#include <QDebug>
+#include <QFile>
 
 DataXMLReader::DataXMLReader(CodeSamplesModel * model)
 {

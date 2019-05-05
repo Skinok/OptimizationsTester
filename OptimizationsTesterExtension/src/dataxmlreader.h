@@ -4,7 +4,6 @@
 
 #include <QDomDocument>
 #include <QIcon>
-#include <QTreeWidget>
 
 #include <QIcon>
 #include <QXmlStreamReader>

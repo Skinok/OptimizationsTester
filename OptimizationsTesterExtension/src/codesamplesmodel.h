@@ -2,6 +2,7 @@
 #define CODESAMPLESMODEL_H
 
 #include <QObject>
+#include <QVector>
 
 /**
  * @brief The CodeSamplesModel class will store the Data model read by the XML parser
@@ -21,10 +22,15 @@ public:
      * @brief The CodeSample struct represent an optimization example ( 1 title and 2 .hpp files )
      */
     struct CodeSample{
+        CodeSample() {}
+        CodeSample( const QString & pTitle, const QString & pCodeBefore, const QString & pCodeAfter)
+            : title(pTitle), codeBefore(pCodeBefore), codeAfter(pCodeAfter)
+            {  }
         QString title;
         QString codeBefore;
         QString codeAfter;
     };
+
 
     /**
      * @brief setSkeletonBefore Load the skeleton template (left) in live coding tab to help user coding its optimizations tests

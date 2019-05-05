@@ -9,7 +9,13 @@
 #include <coreplugin/coreconstants.h>
 
 #include <utils/theme/theme.h>
+#include <utils/algorithm.h>
+#include <utils/mimetypes/mimetype.h>
+#include <utils/mimetypes/mimedatabase.h>
 
+#include <projectexplorer/project.h>
+#include <projectexplorer/session.h>
+#include <projectexplorer/projectmanager.h>
 //
 
 #include <QAction>
@@ -24,6 +30,7 @@
 #include <QQmlEngine>
 #include <QQmlContext>
 
+using namespace ProjectExplorer;
 
 namespace OptimizationsTesterExtension {
 namespace Internal {
@@ -109,6 +116,9 @@ bool OptimizationsTesterExtensionPlugin::initialize(const QStringList &arguments
     mQuickView.setResizeMode(QQuickView::SizeRootObjectToView);
     mQuickView.setTitle("Optimizations Tester");
 
+    // Record this c++ class in the QML engine and allow his slots to be called from QML
+    mQuickView.engine()->rootContext()->setContextProperty("OptimManager",this);
+
     mQuickView.show(); // debug purpose only, it should move to Action triggered after finishing to code it
 
     return true;
@@ -180,12 +190,49 @@ void OptimizationsTesterExtensionPlugin::onQuickViewStatusChanged(QQuickView::St
     }
 }
 
-
+//*********
+// Add OptimRunner in the user session
+//*********
 void OptimizationsTesterExtensionPlugin::initializeOptimRunner(){
 
-    // Todo : Add OptimRunner in the user session
+    //*********
+    // Already existing project
+    //*********
+    QString fileName("../lib/qtcreator/plugins/OptimRunner/OptimRunner.pro");
+    const QFileInfo fi(fileName);
+    const auto filePath = Utils::FileName::fromString(fi.absoluteFilePath());
+    Project *found = Utils::findOrDefault(SessionManager::projects(),
+                                          Utils::equal(&Project::projectFilePath, filePath));
+    if (found) {
+        SessionManager::reportProjectLoadingProgress();
+        return;
+    }
 
-
+    //****
+    // Add Project to the user current session
+    // Code retrieved from "ProjectExplorerPlugin::OpenProjectResult ProjectExplorerPlugin::openProjects(const QStringList &fileNames)" function
+    //****
+    Utils::MimeType mt = Utils::mimeTypeForFile(fileName);
+    if (ProjectManager::canOpenProjectForMimeType(mt)) {
+        if (!filePath.toFileInfo().isFile()) {
+            qDebug() << tr("Failed opening project \"%1\": Project is not a file.").arg(fileName);
+        } else if (Project *pro = ProjectManager::openProject(mt, filePath)) {
+            QObject::connect(pro, &Project::parsingFinished, [pro]() {
+                emit SessionManager::instance()->projectFinishedParsing(pro);
+            });
+            QString restoreError;
+            Project::RestoreResult restoreResult = pro->restoreSettings(&restoreError);
+            if (restoreResult == Project::RestoreResult::Ok) {
+                SessionManager::addProject(pro);
+            } else {
+                delete pro;
+            }
+        }
+    } else {
+        qDebug() << tr("Failed opening project \"%1\": No plugin can open project type \"%2\".")
+                    .arg(QDir::toNativeSeparators(fileName))
+                    .arg(mt.name());
+    }
 }
 
 } // namespace Internal

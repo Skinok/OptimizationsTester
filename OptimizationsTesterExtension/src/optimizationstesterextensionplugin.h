@@ -24,10 +24,9 @@ public:
     void extensionsInitialized();
     ShutdownFlag aboutToShutdown();
 
-    void initializeOptimRunner();
-
 public Q_SLOTS:
     void onQuickViewStatusChanged(QQuickView::Status status);
+    void initializeOptimRunner();
 
 private:
     void triggerAction();
