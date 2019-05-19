@@ -69,3 +69,23 @@ QTC_PLUGIN_RECOMMENDS += \
 ###### End _dependencies.pri contents ######
 
 include($$IDE_SOURCE_TREE/src/qtcreatorplugin.pri)
+
+
+#For our copy command, we neeed to fix the filepaths to use Windows-style path dividers.
+OPTIMRUNNER_SOURCE_PATH = $$shell_path($$clean_path("$$PWD/../OptimRunner"))
+message("source path" $$OPTIMRUNNER_SOURCE_PATH)
+OPTIMRUNNER_DESTINATION = $$shell_path($$clean_path("$${DESTDIR}/OptimRunner"))
+message("source path" $$OPTIMRUNNER_DESTINATION)
+
+#Create a command, using the 'cmd' command line and Window's 'xcopy', to copy our shaders folder
+win32:CopyProject.commands = $$quote(cmd /c xcopy /Y /S /I $${OPTIMRUNNER_SOURCE_PATH} $${OPTIMRUNNER_DESTINATION})
+
+# Not tested on unix, this command should maybe be fixed
+# On unix, it may be possible to use the INSTALLS qmake command
+# It does not seem to work in our case on Windows
+unix:CopyProject.commands = $$quote(cp -rf $${OPTIMRUNNER_SOURCE_PATH} $${OPTIMRUNNER_DESTINATION})
+
+#Add the command to Qt.
+QMAKE_EXTRA_TARGETS += CopyProject
+POST_TARGETDEPS += CopyProject
+

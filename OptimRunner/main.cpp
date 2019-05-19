@@ -15,8 +15,6 @@ int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
 
-    qDebug() << "Main Thead : " << QThread::currentThread();
-
     ThreadLauncher lThreadLauncher;
 
     // Main QQuickView : HMI entry points

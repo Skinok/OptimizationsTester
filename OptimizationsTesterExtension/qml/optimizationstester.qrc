@@ -3,5 +3,6 @@
         <file>main.qml</file>
         <file>TestFrameworkPage.qml</file>
         <file>images/OptimRunnerTree.png</file>
+        <file>GraphicNumber.qml</file>
     </qresource>
 </RCC>

@@ -6,11 +6,11 @@ import QtQuickDesignerTheme 1.0
 
 Item {
     id: window
+
     width: 1280
     height: 800
 
     // property API here
-
     TabBar {
         id: tabBar
         width: parent.width
@@ -29,49 +29,27 @@ Item {
         }
     }
 
-    TestFrameworkPage{
-        id: testFrameworkPage
+    StackLayout {
+        id: mainStackedLayout
+        anchors.top: tabBar.bottom
+
+        width: parent.width
+        height: parent.height - tabBar.height
+
+        currentIndex: bar.currentIndex
+
+        TestFrameworkPage {
+            id: testFrameworkPage
+        }
+
+        Item {
+            id: examplePage
+        }
     }
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /*##^## Designer {
     D{i:1;anchors_width:298;anchors_x:7;anchors_y:70}
 }
  ##^##*/
+
