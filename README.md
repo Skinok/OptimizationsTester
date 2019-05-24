@@ -24,6 +24,8 @@ Todo list :
 - [ ] Add source code examples in the library
 - [ ] ...
 
-If you have any issues when you install it, feel free to email me !
+
+
+If you have any questions, ideas or issues when you install it, feel free to email me !
 
 Skinok.
