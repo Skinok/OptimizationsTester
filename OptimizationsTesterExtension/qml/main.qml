@@ -1,4 +1,4 @@
-import QtQuick 2.9
+import QtQuick 2.12
 import QtQuick.Window 2.2
 import QtQuick.Controls 2.5
 import QtQuick.Layouts 1.12
@@ -9,6 +9,8 @@ Item {
 
     width: 1280
     height: 800
+
+    antialiasing: true
 
     // property API here
     TabBar {
@@ -36,7 +38,7 @@ Item {
         width: parent.width
         height: parent.height - tabBar.height
 
-        currentIndex: bar.currentIndex
+        currentIndex: tabBar.currentIndex
 
         TestFrameworkPage {
             id: testFrameworkPage
