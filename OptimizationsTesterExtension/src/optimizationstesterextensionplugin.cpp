@@ -112,15 +112,12 @@ bool OptimizationsTesterExtensionPlugin::initialize(const QStringList &arguments
     //**
     QObject::connect( &mQuickView, &QQuickView::statusChanged, this, &OptimizationsTesterExtensionPlugin::onQuickViewStatusChanged);
 
-    mQuickView.setSource(lMainFile);
-    mQuickView.setResizeMode(QQuickView::SizeRootObjectToView);
-    mQuickView.setTitle("Optimizations Tester");
-
     // Record this c++ class in the QML engine and allow his slots to be called from QML
     mQuickView.engine()->rootContext()->setContextProperty("OptimManager",this);
 
-
-    mQuickView.show(); // debug purpose only, it should move to Action triggered after finishing to code it
+    mQuickView.setSource(lMainFile);
+    mQuickView.setResizeMode(QQuickView::SizeRootObjectToView);
+    mQuickView.setTitle("Optimizations Tester");
 
     return true;
 }
@@ -142,11 +139,9 @@ ExtensionSystem::IPlugin::ShutdownFlag OptimizationsTesterExtensionPlugin::about
 
 void OptimizationsTesterExtensionPlugin::triggerAction()
 {
-    QMessageBox::information(Core::ICore::mainWindow(),
-                             tr("Action Triggered"),
-                             tr("This is an action from OptimizationsTesterExtension."));
+    // Show the plugin QML window
+    mQuickView.show();
 }
-
 
 /*
  * *

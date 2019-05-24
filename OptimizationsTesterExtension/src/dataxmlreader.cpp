@@ -17,11 +17,11 @@ bool DataXMLReader::read(QIODevice *device)
 {
     mReader.setDevice(device);
 
-    qDebug() << "DataXMLReader::read";
+    //qDebug() << "DataXMLReader::read";
     if (mReader.readNextStartElement()) {
-        qDebug() << "mReader.name() = " << mReader.name();
+        //qDebug() << "mReader.name() = " << mReader.name();
         if (mReader.name() == QLatin1String("optimizationsTester")) {
-            qDebug() << "readOptimizationsTester()";
+            //qDebug() << "readOptimizationsTester()";
             readOptimizationsTester();
         } else {
             mReader.raiseError(QObject::tr("The file is not an XBEL version 1.0 file."));
