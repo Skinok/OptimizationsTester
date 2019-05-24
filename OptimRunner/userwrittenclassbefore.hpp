@@ -11,6 +11,7 @@ class UserWrittenClassBefore{
 public:
 
     UserWrittenClassBefore(){}
+
     qint64 checkPerformance(){
         // Start performance timer
         mTimer.start();

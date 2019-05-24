@@ -15,14 +15,13 @@ int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
 
+    //Thread Launcher will handle user code execution in various threads to speed up the tests
     ThreadLauncher lThreadLauncher;
+    lThreadLauncher.initialize();
 
-    // Main QQuickView : HMI entry points
-    /*QQuickView lViewer();
-
-    PerformanceManager perfoMgr;
-    lViewer.rootContext()->setContextProperty("PerformanceMgr", &perfoMgr);
-    */
+    // Performance Manager will be used to give user some statistics about the code execution
+    // The better should be to execute the user code many times and calculate an average execution time for both code (before & after optimizations)
+    //PerformanceManager perfoMgr;
 
     return a.exec();
 }

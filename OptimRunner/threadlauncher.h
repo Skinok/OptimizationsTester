@@ -12,6 +12,8 @@ class ThreadLauncher : public QObject
 public:
     ThreadLauncher();
 
+    void initialize();
+
 public slots:
 
     void onHandleFinished();

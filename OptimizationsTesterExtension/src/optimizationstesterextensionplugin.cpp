@@ -119,6 +119,7 @@ bool OptimizationsTesterExtensionPlugin::initialize(const QStringList &arguments
     // Record this c++ class in the QML engine and allow his slots to be called from QML
     mQuickView.engine()->rootContext()->setContextProperty("OptimManager",this);
 
+
     mQuickView.show(); // debug purpose only, it should move to Action triggered after finishing to code it
 
     return true;
@@ -228,10 +229,25 @@ void OptimizationsTesterExtensionPlugin::initializeOptimRunner(){
                 delete pro;
             }
         }
+
+        //All is OK, project is initialized correctly, tell it to HMI
+        setOptimRunnerInstalled(true);
+
     } else {
         qDebug() << tr("Failed opening project \"%1\": No plugin can open project type \"%2\".")
                     .arg(QDir::toNativeSeparators(fileName))
                     .arg(mt.name());
+    }
+}
+
+bool OptimizationsTesterExtensionPlugin::optimRunnerInstalled() const {
+    return mOptimRunnerInstalled;
+}
+
+void OptimizationsTesterExtensionPlugin::setOptimRunnerInstalled(bool pOptimRunnerInstalled) {
+    if (mOptimRunnerInstalled != pOptimRunnerInstalled ){
+        mOptimRunnerInstalled = pOptimRunnerInstalled ;
+        emit optimRunnerInstalledChanged();
     }
 }
 
