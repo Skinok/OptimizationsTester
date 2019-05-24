@@ -31,7 +31,7 @@ isEmpty(IDE_SOURCE_TREE): IDE_SOURCE_TREE = "C:/Users/Public/CUBE/qt-creator-ope
 
 ## Either set the IDE_BUILD_TREE when running qmake,
 ## or set the QTC_BUILD environment variable, to override the default setting
-isEmpty(IDE_BUILD_TREE): IDE_BUILD_TREE = $$(QTC_BUILD)
+#isEmpty(IDE_BUILD_TREE): IDE_BUILD_TREE = $$(QTC_BUILD)
 
 ## uncomment to build plugin into user config directory
 ## <localappdata>/plugins/<ideversion>
@@ -52,6 +52,7 @@ CONFIG(debug, debug|release) {
     LIBS += $$IDE_BUILD_TREE/lib/qtcreator/plugins/ProjectExplorerd4.lib
 }else {
     isEmpty(IDE_BUILD_TREE): IDE_BUILD_TREE = "C:/Users/Public/CUBE/build-qtcreator-Qt_5_12_2_MSVC_2017_32-Release"
+    LIBS += $$IDE_BUILD_TREE/lib/qtcreator/plugins/Core4.lib
     LIBS += $$IDE_BUILD_TREE/lib/qtcreator/plugins/QmakeProjectManager4.lib
     LIBS += $$IDE_BUILD_TREE/lib/qtcreator/plugins/ProjectExplorer4.lib
 }
@@ -70,22 +71,42 @@ QTC_PLUGIN_RECOMMENDS += \
 
 include($$IDE_SOURCE_TREE/src/qtcreatorplugin.pri)
 
+#
+# Copy Optim Runner Project in the Qt creator build directory
+#
 
 #For our copy command, we neeed to fix the filepaths to use Windows-style path dividers.
 OPTIMRUNNER_SOURCE_PATH = $$shell_path($$clean_path("$$PWD/../OptimRunner"))
-message("source path" $$OPTIMRUNNER_SOURCE_PATH)
+message("OPTIMRUNNER_SOURCE_PATH source path" $$OPTIMRUNNER_SOURCE_PATH)
 OPTIMRUNNER_DESTINATION = $$shell_path($$clean_path("$${DESTDIR}/OptimRunner"))
-message("source path" $$OPTIMRUNNER_DESTINATION)
+message("OPTIMRUNNER_DESTINATION destination path" $$OPTIMRUNNER_DESTINATION)
 
 #Create a command, using the 'cmd' command line and Window's 'xcopy', to copy our shaders folder
 win32:CopyProject.commands = $$quote(cmd /c xcopy /Y /S /I $${OPTIMRUNNER_SOURCE_PATH} $${OPTIMRUNNER_DESTINATION})
-
 # Not tested on unix, this command should maybe be fixed
 # On unix, it may be possible to use the INSTALLS qmake command
-# It does not seem to work in our case on Windows
 unix:CopyProject.commands = $$quote(cp -rf $${OPTIMRUNNER_SOURCE_PATH} $${OPTIMRUNNER_DESTINATION})
+
+
+#
+# Copy Examples files in the Qt creator build directory
+#
+#For our copy command, we neeed to fix the filepaths to use Windows-style path dividers.
+EXAMPLES_SOURCE_PATH = $$shell_path($$clean_path("$$PWD/Examples"))
+message("EXAMPLES_SOURCE_PATH source path" $$EXAMPLES_SOURCE_PATH)
+EXAMPLES_DESTINATION = $$shell_path($$clean_path("$${IDE_BUILD_TREE}/Bin/Examples"))
+message("EXAMPLES_DESTINATION destination path" $$IDE_BUILD_TREE)
+
+#Create a command, using the 'cmd' command line and Window's 'xcopy', to copy our shaders folder
+win32:CopyExamples.commands = $$quote(cmd /c xcopy /Y /S /I $${EXAMPLES_SOURCE_PATH} $${EXAMPLES_DESTINATION})
+# Not tested on unix, this command should maybe be fixed
+# On unix, it may be possible to use the INSTALLS qmake command
+unix:CopyExamples.commands = $$quote(cp -rf $${EXAMPLES_SOURCE_PATH} $${EXAMPLES_DESTINATION})
+
 
 #Add the command to Qt.
 QMAKE_EXTRA_TARGETS += CopyProject
 POST_TARGETDEPS += CopyProject
 
+QMAKE_EXTRA_TARGETS += CopyExamples
+POST_TARGETDEPS += CopyExamples
