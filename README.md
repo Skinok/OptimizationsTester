@@ -11,7 +11,7 @@ Second tab will show various source code optimizations usually found online amon
 
 Todo list : 
 - [X] Create Github and project structure
-- [X] Design QML : "Live coding" tab
+- [X] Design QML : "Optimizations tester" tab
 - [X] Create XML file & code the XML reader to load examples data
 - [X] Create Model class to easily interact with QML in MVC behvior
 - [X] DistFiles are not copied in the build dir, must find why
