@@ -4,8 +4,8 @@ import QtQuick.Controls 2.12
 
 /*
  *
-  This page will give the user the opportunity to compare different optimizations in code samples.
-  It will show the results of optimizations and hints the user on the best suited for his case
+  This page will give the user the opportunity to compare different optimizations in source code.
+  It will give the
  */
 Item {
     id: helpOptimizationPage
@@ -340,9 +340,6 @@ Item {
     }
 }
 
-
-
-
 /*##^## Designer {
     D{i:2;anchors_x:34;anchors_y:84}D{i:3;anchors_x:34;anchors_y:146}D{i:4;anchors_x:54;anchors_y:178}
 D{i:5;anchors_x:42;anchors_y:375}D{i:6;anchors_x:54;anchors_y:250}D{i:7;anchors_height:26;anchors_width:117;anchors_x:416;anchors_y:239}
@@ -351,3 +348,4 @@ D{i:11;anchors_x:241;anchors_y:44}D{i:14;anchors_x:497;anchors_y:282}D{i:15;anch
 D{i:16;anchors_x:30;anchors_y:505}D{i:17;anchors_x:38;anchors_y:613}D{i:18;anchors_x:655;anchors_y:578}
 }
  ##^##*/
+

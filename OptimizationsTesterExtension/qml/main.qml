@@ -44,7 +44,7 @@ Item {
             id: testFrameworkPage
         }
 
-        Item {
+        OptimizationsExamplesPage {
             id: examplePage
         }
     }

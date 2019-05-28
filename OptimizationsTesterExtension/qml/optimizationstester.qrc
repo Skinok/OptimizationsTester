@@ -6,5 +6,6 @@
         <file>GraphicNumber.qml</file>
         <file>images/OptimRunner_user_before_class.png</file>
         <file>images/Results.png</file>
+        <file>OptimizationsExamplesPage.qml</file>
     </qresource>
 </RCC>
